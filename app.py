@@ -107,11 +107,6 @@ def get_all_photos():
         
         respuesta = cursor.fetchall()
         # print("Respuesta completa:", respuesta)
-
-        
-        for row in respuesta:
-            print('entrando al loop')
-            # print(row)
         
         # Convertimos cada registro en un diccionario con las keys esperadas
         photos = [
