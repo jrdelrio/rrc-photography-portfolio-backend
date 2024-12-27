@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 
 DATABASE = os.path.join(os.path.dirname(__file__), 'photos.db')
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 def get_db():
     """Establece la conexión con la base de datos y la reutiliza en cada petición"""
