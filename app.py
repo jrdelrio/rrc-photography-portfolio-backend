@@ -106,10 +106,7 @@ def get_all_photos():
         cursor.execute('SELECT * FROM photos;')
         
         respuesta = cursor.fetchall()
-        # print("Respuesta completa:", respuesta)
-
         
-        # Convertimos cada registro en un diccionario con las keys esperadas
         photos = [
             {
                 'id': row[0],
@@ -166,4 +163,4 @@ def get_photos_from_gallery(gallery_name):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
