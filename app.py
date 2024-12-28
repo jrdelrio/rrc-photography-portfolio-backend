@@ -6,11 +6,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean, text
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///photos.db'
+CORS(app, resources={r"/*": {"origins": "https://www.raimundodelrio.cl"}})
+
 app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 
 DATABASE = os.path.join(os.path.dirname(__file__), 'photos.db')
-CORS(app)
 
 def get_db():
     """Establece la conexión con la base de datos y la reutiliza en cada petición"""
@@ -108,10 +108,6 @@ def get_all_photos():
         respuesta = cursor.fetchall()
         # print("Respuesta completa:", respuesta)
 
-        
-        for row in respuesta:
-            print('entrando al loop')
-            # print(row)
         
         # Convertimos cada registro en un diccionario con las keys esperadas
         photos = [
