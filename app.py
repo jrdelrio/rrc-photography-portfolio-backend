@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean, text
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://www.raimundodelrio.cl"}}, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "https://www.raimundodelrio.cl"}}, expose_headers=["Content-Type"], supports_credentials=True)
 
 app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 
