@@ -13,7 +13,8 @@ allowed_origins = [
     ]
 # CORS(app, resources={r"/*": {"origins": alowed_origins}}, expose_headers=["Content-Type"], supports_credentials=True)
 # CORS(app, resources={r"/*": {"origins": "https://www.raimundodelrio.cl"}}, expose_headers=["Content-Type"])
-CORS(app, resources={r"/*": {"origins": allowed_origins}})
+# CORS(app, resources={r"/*": {"origins": allowed_origins}})
+CORS(app, resources={r"/*": {"origins": '*'}})
 
 app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 
