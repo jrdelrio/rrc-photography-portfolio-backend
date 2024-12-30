@@ -6,11 +6,14 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean, text
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": [
+
+alowed_origins = [
     "https://www.raimundodelrio.cl",
     'http://localhost:3001'
-    ]}}, expose_headers=["Content-Type"], supports_credentials=True)
+    ]
+# CORS(app, resources={r"/*": {"origins": alowed_origins}}, expose_headers=["Content-Type"], supports_credentials=True)
 # CORS(app, resources={r"/*": {"origins": "https://www.raimundodelrio.cl"}}, expose_headers=["Content-Type"])
+CORS(app, resources={r"/*": {"origins": alowed_origins}})
 
 app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 
@@ -167,4 +170,4 @@ def get_photos_from_gallery(gallery_name):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
