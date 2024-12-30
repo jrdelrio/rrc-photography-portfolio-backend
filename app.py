@@ -7,13 +7,13 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Boolean, text
 
 app = Flask(__name__)
 
-alowed_origins = [
+allowed_origins = [
     "https://www.raimundodelrio.cl",
     'http://localhost:3001'
     ]
 # CORS(app, resources={r"/*": {"origins": alowed_origins}}, expose_headers=["Content-Type"], supports_credentials=True)
 # CORS(app, resources={r"/*": {"origins": "https://www.raimundodelrio.cl"}}, expose_headers=["Content-Type"])
-CORS(app, resources={r"/*": {"origins": alowed_origins}})
+CORS(app, resources={r"/*": {"origins": allowed_origins}})
 
 app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 
