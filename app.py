@@ -89,13 +89,11 @@ def get_carrousel_images():
         #                ''')
         cursor.execute('''
                     SELECT 
-                        PHOTOS.id AS photo_id,
-                        PHOTOS.url AS photo_url,
-                        PHOTOS.carrousel AS photo_carrousel,
+                        id, url
                     FROM 
                         PHOTOS
                     WHERE
-                        PHOTOS.carrousel = 1;
+                        carrousel = 1;
                        ''')
 
         # Almacena los resultados de fetchall() en una variable y úsala
