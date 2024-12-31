@@ -74,19 +74,6 @@ def get_carrousel_images():
     try:
         db = get_db()
         cursor = db.cursor()
-        # cursor.execute('''
-        #             SELECT 
-        #                 PHOTOS.id AS photo_id,
-        #                 PHOTOS.url AS photo_url,
-        #                 PHOTOS.carrousel AS photo_carrousel,
-        #                 GALLERIES.name AS gallery_name
-        #             FROM 
-        #                 PHOTOS
-        #             JOIN 
-        #                 GALLERIES ON PHOTOS.gallery_id = GALLERIES.id
-        #             WHERE
-        #                 PHOTOS.carrousel = 1;
-        #                ''')
         cursor.execute('''
                     SELECT 
                         id, url
@@ -95,17 +82,16 @@ def get_carrousel_images():
                     WHERE
                         carrousel = 1;
                        ''')
-
+        
         # Almacena los resultados de fetchall() en una variable y úsala
         rows = cursor.fetchall()
+        print("Filas:", rows)
 
         # Crear la lista con los resultados
         carrousel_images = [
             {
                 'photo_id': row[0],
-                'photo_url': row[1],
-                'photo_carousel': row[2],
-                'gallery_name': row[3]
+                'photo_url': row[1]
             }
             for row in rows
         ]
