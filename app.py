@@ -132,19 +132,20 @@ def get_photos_from_gallery(gallery_name):
         db = get_db()
         cursor = db.cursor()
         
-        cursor.execute(f'''
-                        SELECT
-                            GALLERIES.photo_id,
-                            PHOTOS.id,
-                            PHOTOS.url,
-                            PHOTOS.alternative_text
-                        FROM
-                            PHOTOS
-                        JOIN
-                            GALLERIES ON PHOTOS.gallery_id = GALLERIES.id
-                        WHERE
-                            GALLERIES.name = "{gallery_name}";
-                        ''')
+        cursor.execute('''
+            SELECT
+                GALLERIES.photo_id,
+                PHOTOS.id,
+                PHOTOS.url,
+                PHOTOS.alternative_text
+            FROM
+                PHOTOS
+            JOIN
+                GALLERIES ON PHOTOS.gallery_id = GALLERIES.id
+            WHERE
+                GALLERIES.name = ?;
+        ''', (gallery_name,))
+
         
         respuesta = cursor.fetchall()
         # print("Respuesta completa:", respuesta)
@@ -169,4 +170,4 @@ def get_photos_from_gallery(gallery_name):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
