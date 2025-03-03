@@ -76,7 +76,7 @@ def get_carrousel_images():
         cursor = db.cursor()
         cursor.execute('''
                     SELECT 
-                        id, url
+                        id, url, alternative_text
                     FROM 
                         PHOTOS
                     WHERE
@@ -91,7 +91,8 @@ def get_carrousel_images():
         carrousel_images = [
             {
                 'photo_id': row[0],
-                'photo_url': row[1]
+                'photo_url': row[1],
+                'alternative_text': row[2]
             }
             for row in rows
         ]
@@ -114,7 +115,8 @@ def get_all_photos():
                 'id': row[0],
                 'url': row[1],
                 'carrousel': row[2],
-                'gallery_id': row[3]
+                'gallery_id': row[3],
+                'alternative_text': row[4]
             }
             for row in respuesta
             
@@ -134,7 +136,8 @@ def get_photos_from_gallery(gallery_name):
                         SELECT
                             GALLERIES.photo_id,
                             PHOTOS.id,
-                            PHOTOS.url
+                            PHOTOS.url,
+                            PHOTOS.alternative_text
                         FROM
                             PHOTOS
                         JOIN
@@ -152,7 +155,8 @@ def get_photos_from_gallery(gallery_name):
         photos = [
             {
                 'photo_id': row[1],
-                'photo_url': row[2]
+                'photo_url': row[2],
+                'alternative_text': row[3]
             }
             for row in respuesta
         ]
